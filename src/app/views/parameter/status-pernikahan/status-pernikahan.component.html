@@ -1,0 +1,131 @@
+<div class="animated-fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-accent-info">
+                <div class="card-header">
+                    <b>Parameter Status Pernikahan</b>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label>Kode Perkawinan</label>
+                            <input type="text" class="form-control" [(ngModel)]="searching.kode_perkawinan" name="kode_perkawinan" id="kode_perkawinan">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label>Nama Perkawinan</label>
+                            <input type="text" class="form-control" [(ngModel)]="searching.nama_perkawinan" name="nama_perkawinan" id="nama_perkawinan">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" (click)="Search()" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i> Cari</button>
+                    <button type="button" (click)="Reset()" class="btn btn-md btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <button type="button" (click)="addModal.show()" class="btn btn-md btn-success"><i class="fa fa-solid fa-plus"></i> Tambah</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Kode Perkawinan</th>
+                                    <th>Nama Perkawinan</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let data of data_pernikahan">
+                                <tr>
+                                    <td>{{data.kode_perkawinan}}</td>
+                                    <td>{{data.nama_perkawinan}}</td>
+                                    <td>
+                                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                                            <button type="button" class="btn btn-md btn-primary" (click)="OpenModalUpdate(data)"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                            <button type="button" class="btn btn-md btn-danger" (click)="Delete(data)"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ADD -->
+<div bsModal #AddModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Parameter Status Pernikahan</h4>
+          <button type="button" class="close" (click)="AddModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Kode Perkawinan</label>
+                    <input type="text" class="form-control" [(ngModel)]="input.kode_perkawinan" name="kode_perkawinan" id="kode_perkawinan">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Nama Perkawinan</label>
+                    <input type="text" class="form-control" [(ngModel)]="input.nama_perkawinan" name="nama_perkawinan" id="nama_perkawinan">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="AddModal.hide()">Tutup</button>
+          <button type="button" class="btn btn-primary" (click)="Save()">Simpan</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- UPDATE -->
+<div bsModal #UpdateModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Parameter Status Pernikahan</h4>
+          <button type="button" class="close" (click)="UpdateModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Kode Perkawinan</label>
+                    <input type="text" class="form-control" [(ngModel)]="update.kode_perkawinan" name="kode_perkawinan" id="kode_perkawinan">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Nama Perkawinan</label>
+                    <input type="text" class="form-control" [(ngModel)]="update.nama_perkawinan" name="nama_perkawinan" id="nama_perkawinan">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="UpdateModal.hide()">Tutup</button>
+          <button type="button" class="btn btn-primary" (click)="Update()">Ubah</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
