@@ -63,6 +63,10 @@ export class CommonService {
            this.alert.showInfoMessage('Info', error.error.message);
         }
 
+         if(error.status == "400"){
+           this.alert.showInfoMessage('Info', error.error.message);
+        }
+
          if(error.status == "404"){
           console.log("Data is Not Found, Please try again");
         }

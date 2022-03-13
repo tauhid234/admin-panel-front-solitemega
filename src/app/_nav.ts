@@ -24,6 +24,34 @@ export const navItems: INavData[] = [
     ]
   },
 
+  {
+    name : 'Akun',
+    url : '/akun',
+    icon : 'icon-people',
+    children : [
+      {
+        name : 'Admin',
+        url : '/akun/admin'
+      },
+      {
+        name : 'User Profile',
+        url : '/akun/user-profile'
+      }
+    ]
+  },
+
+  {
+    name : 'Produk',
+    url : '/produk',
+    icon : 'icon-layers',
+    children : [
+      {
+        name : 'Kategori',
+        url : '/produk/kategori'
+      }
+    ]
+  }
+
 
   // TEMPLATE
 

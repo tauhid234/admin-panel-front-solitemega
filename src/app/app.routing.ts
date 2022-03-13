@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
+import { Guard } from './guard/guard';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -52,7 +53,18 @@ export const routes: Routes = [
     children: [
       {
         path : 'parameter',
+        canActivate : [Guard],
         loadChildren: () => import('./views/parameter/parameter.module').then(m => m.ParameterModule)
+      },
+      {
+        path : 'akun',
+        canActivate : [Guard],
+        loadChildren : () => import('./views/account/account.module').then(m => m.AccountModule)
+      },
+      {
+        path : 'produk',
+        canActivate : [Guard],
+        loadChildren : () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
         path: 'base',
@@ -68,6 +80,7 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
+        canActivate : [Guard],
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {

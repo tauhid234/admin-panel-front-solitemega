@@ -44,6 +44,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { ParameterModule } from './views/parameter/parameter.module';
 import { AlertModule } from 'alert-notification';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -60,6 +61,8 @@ import { AlertModule } from 'alert-notification';
     ParameterModule,
     TabsModule.forRoot(),
     ChartsModule,
+
+    FormsModule,
 
     IconModule,
     IconSetModule.forRoot(),

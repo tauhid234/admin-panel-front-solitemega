@@ -1,0 +1,65 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                Akun User Profile
+              </div>
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" [(ngModel)]="searching.nama_lengkap" name="nama_lengkap" id="nama_lengkap">
+                    </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="button" (click)="Search()" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i> Cari</button>
+                <button type="button" (click)="Reset()" class="btn btn-md btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+            </div>
+        </div><!--/.col-->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <!-- <button type="button" (click)="addModal.show()" class="btn btn-md btn-success"><i class="fa fa-solid fa-plus"></i> Tambah</button> -->
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>No Handphone</th>
+                                    <th>Email</th>
+                                    <th>Pendidikan</th>
+                                    <th>Status Perkawinan</th>
+                                    <th>Nama Ibu Kandung</th>
+                                    <th>Alamat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let data of data_user_profile let i = index">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{data.nama_lengkap}}</td>
+                                    <td>{{data.phone}}</td>
+                                    <td>{{data.email}}</td>
+                                    <td>{{data.pendidikan}}</td>
+                                    <td>{{data.status_perkawinan}}</td>
+                                    <td>{{data.nama_ibu_kandung}}</td>
+                                    <td>{{data.alamat}}</td>
+                                </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

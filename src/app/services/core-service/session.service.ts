@@ -10,9 +10,9 @@ import { environment } from '../../../environments/environment';
 })
 export class SessionService {
 
-  // server : string = "http://api.solitemega.com/solite-api";
+  server : string = "http://api.solitemega.com/solite-api";
 
-  server : string = "http://localhost:3000/solite-api";
+  // server : string = "http://localhost:3000/solite-api";
   
   pasphrase = "SOLITEMEGA";
 
@@ -32,6 +32,14 @@ export class SessionService {
   //   this.removeAuthentication();
   //   this.router.navigate(['login'],{skipLocationChange : true});
   // }
+
+  public setUserId(user_id : string){
+    return sessionStorage.setItem("user_id", user_id);
+  }
+
+  public getUserId(){
+    return sessionStorage.getItem("user_id");
+  }
 
 
   public getFormUrlEncoded(toConvert : any) {
