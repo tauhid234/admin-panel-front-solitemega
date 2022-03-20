@@ -1,0 +1,169 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                Barang
+              </div>
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Nama Barang</label>
+                        <input type="text" class="form-control" [(ngModel)]="searching.nama_kategori" name="nama_barang" id="nama_barang">
+                    </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="button" (click)="Search()" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i> Cari</button>
+                <button type="button" (click)="Reset()" class="btn btn-md btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+            </div>
+        </div><!--/.col-->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <button type="button" (click)="addModal.show()" class="btn btn-md btn-success"><i class="fa fa-solid fa-plus"></i> Tambah</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Kategori</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga Asli</th>
+                                    <th>Uang Muka</th>
+                                    <th>Deskripsi</th>
+                                    <th>Keterangan Barang</th>
+                                    <th>Cicilan 6 Bulan</th>
+                                    <th>Cicilan 8 Bulan</th>
+                                    <th>Cicilan 10 Bulan</th>
+                                    <th>Cicilan 15 Bulan</th>
+                                    <th>Cicilan 18 Bulan</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let data of data_produk let i = index">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{data.kode_kategori}}</td>
+                                    <td>{{data.judul_produk}}</td>
+                                    <td>{{data.harga_asli}}</td>
+                                    <td>{{data.uang_muka}}</td>
+                                    <td>{{data.deskripsi}}</td>
+                                    <td>{{data.keterangan_produk}}</td>
+                                    <td>{{data.cicilan6_bulan}}</td>
+                                    <td>{{data.cicilan8_bulan}}</td>
+                                    <td>{{data.cicilan10_bulan}}</td>
+                                    <td>{{data.cicilan15_bulan}}</td>
+                                    <td>{{data.cicilan18_bulan}}</td>
+                                    <td>
+                                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                                            <button type="button" class="btn btn-md btn-primary" (click)="OpenModalUpdate(data)"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                            <button type="button" class="btn btn-md btn-danger" *ngIf="data.id != userId" (click)="Delete(data)"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ADD -->
+<div bsModal #AddModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Barang</h4>
+          <button type="button" class="close" (click)="AddModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Foto Barang</label>
+                    <input type="file" class="form-control" (change)="UploadFoto($event)" [(ngModel)]="input.foto" name="file" id="file">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Kategori Barang</label>
+                    <select id="kategori_barang" name="kategori_barang" [(ngModel)]="input.kategori_barang" class="form-control">
+                        <option value="">-</option>
+                        <ng-container *ngFor="let data of data_category">
+                            <option [ngValue]="data">{{data.nama_kategori}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Nama Barang</label>
+                    <input type="text" class="form-control" [(ngModel)]="input.nama_barang" name="nama_barang" id="nama_barang">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Harga Barang</label>
+                    <input type="text" class="form-control" [(ngModel)]="input.harga_barang" (keyup)="HitungCicilan()" name="harga_barang" id="harga_barang">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Uang Muka</label>
+                    <input type="text" class="form-control" [(ngModel)]="input.uang_muka" (keyup)="ValidateUangMuka()" name="uang_muka" id="uang_muka">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Deskripsi Barang</label>
+                    <textarea [(ngModel)]="input.deskripsi" id="textarea-input" name="textarea-input" rows="4" class="form-control" placeholder="Content.."></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Keterangan Barang</label>
+                    <textarea [(ngModel)]="input.keterangan_produk" id="textarea-input" name="textarea-input" rows="4" class="form-control" placeholder="Content.."></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Cicilan 6 Bulan</label>
+                    <input type="text" class="form-control" readonly [(ngModel)]="input.cicilan6_bulan" name="cicilan6_bulan" id="cicilan6_bulan">                    
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Cicilan 8 Bulan</label>
+                    <input type="text" class="form-control" readonly [(ngModel)]="input.cicilan8_bulan" name="cicilan8_bulan" id="cicilan8_bulan">                    
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Cicilan 10 Bulan</label>
+                    <input type="text" class="form-control" readonly [(ngModel)]="input.cicilan10_bulan" name="cicilan10_bulan" id="cicilan10_bulan">                    
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Cicilan 15 Bulan</label>
+                    <input type="text" class="form-control" readonly [(ngModel)]="input.cicilan15_bulan" name="cicilan15_bulan" id="cicilan15_bulan">                    
+                </div>
+                <div class="col-md-12 form-group">
+                    <label>Cicilan 18 Bulan</label>
+                    <input type="text" class="form-control" readonly [(ngModel)]="input.cicilan18_bulan" name="cicilan18_bulan" id="cicilan18_bulan">                    
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="AddModal.hide()">Tutup</button>
+          <button type="button" class="btn btn-primary" (click)="Save()">Simpan</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

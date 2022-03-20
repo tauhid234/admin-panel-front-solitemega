@@ -1,0 +1,92 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                Data Pengajuan Kredit
+              </div>
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" [(ngModel)]="searching.nama_lengkap" name="nama_lengkap" id="nama_lengkap">
+                    </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="button" (click)="Search()" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i> Cari</button>
+                <button type="button" (click)="Reset()" class="btn btn-md btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+            </div>
+        </div><!--/.col-->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Nama Panggilan</th>
+                                    <th>Nomor Whatsapp</th>
+                                    <th>Lokasi Kota</th>
+                                    <th>Status Kepemilikan Rumah</th>
+                                    <th>Alamat Tinggal</th>
+                                    <th>Alamat Domisili</th>
+                                    <th>Alamat KTP</th>
+                                    <th>Nomor Rekening Listrik</th>
+                                    <th>Pekerjaan</th>
+                                    <th>Lama Bekerja</th>
+                                    <th>Penghasilan per Bulan</th>
+                                    <th>Jumlah Tanggungan</th>
+                                    <th>Info Mula SoliteMega</th>
+                                    <th>Akun Follow IG</th>
+                                    <th>Tanggal Survey</th>
+                                    <th>Jam Survey</th>
+                                    <!-- <th>Action</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let data of data_submission let i = index">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{data.nama_lengkap}}</td>
+                                    <td>{{data.nama_panggilan}}</td>
+                                    <td>{{data.nomor_whatsapp}}</td>
+                                    <td>{{data.lokasi_kota}}</td>
+                                    <td>{{data.status_rumah_kepemilikan}}</td>
+                                    <td>{{data.alamat_tinggal}}</td>
+                                    <td>{{data.alamat_domisili}}</td>
+                                    <td>{{data.alamat_ktp}}</td>
+                                    <td>{{data.nomor_rekening_listrik}}</td>
+                                    <td>{{data.pekerjaan}}</td>
+                                    <td>{{data.lama_bekerja}}</td>
+                                    <td>{{data.penghasilan_bulanan}}</td>
+                                    <td>{{data.jumlah_tanggungan}}</td>
+                                    <td>{{data.info_mula_solitemega}}</td>
+                                    <td>{{data.akun_instagram_follow}}</td>
+                                    <td>{{data.tanggal_survey}}</td>
+                                    <td>{{data.jam_survey}}</td>
+                                    <!-- <td>
+                                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                                            <button type="button" class="btn btn-md btn-primary" (click)="OpenModalUpdate(data)"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                            <button type="button" class="btn btn-md btn-danger" *ngIf="data.id != userId" (click)="Delete(data)"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                                        </div>
+                                    </td> -->
+                                </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -48,6 +48,22 @@ export const navItems: INavData[] = [
       {
         name : 'Kategori',
         url : '/produk/kategori'
+      },
+      {
+        name : 'Barang',
+        url : '/produk/barang'
+      }
+    ]
+  },
+
+  {
+    name : 'Forms',
+    url : '/forms',
+    icon : 'icon-doc',
+    children : [
+      {
+        name : 'Pengajuan Kredit',
+        url : '/forms/submission-credit'
       }
     ]
   }

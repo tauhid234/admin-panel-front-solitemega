@@ -67,6 +67,11 @@ export const routes: Routes = [
         loadChildren : () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
+        path : 'forms',
+        canActivate : [Guard],
+        loadChildren : () => import('./views/forms/form/form.module').then(m => m.FormModule)
+      },
+      {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },

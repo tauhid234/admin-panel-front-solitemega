@@ -10,9 +10,9 @@ import { environment } from '../../../environments/environment';
 })
 export class SessionService {
 
-  server : string = "http://api.solitemega.com/solite-api";
+  // server : string = "http://api.solitemega.com/solite-api";
 
-  // server : string = "http://localhost:3000/solite-api";
+  server : string = "http://localhost:3000/solite-api";
   
   pasphrase = "SOLITEMEGA";
 
